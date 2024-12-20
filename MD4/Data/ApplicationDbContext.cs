@@ -9,5 +9,8 @@ namespace MD4.Data
             : base(options)
         {
         }
+
+        public DbSet<MD4.Models.Student> Students { get; set; }
+        public DbSet<MD4.Models.Course> Courses { get; set; }
     }
 }
