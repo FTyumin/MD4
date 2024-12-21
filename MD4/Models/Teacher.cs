@@ -10,7 +10,7 @@ namespace MD4.Models
         public string Surname { get; set; }
         public string Gender { get; set; }
         public DateTime ContractDate { get; set; }
-        public ICollection<Course> Courses { get; set; }
+        public ICollection<Course>? Courses { get; set; }
         public Teacher(int id, string name, string surname)
         {
             ID = id;

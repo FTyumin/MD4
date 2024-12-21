@@ -11,7 +11,7 @@ namespace MD4.Models
         public string Description { get; set; }
         Course Course { get; set; }
 
-        public ICollection<Submission> Submissions { get; set; }
+        public ICollection<Submission>? Submissions { get; set; }
 
         public Assignment(int id, DateTime deadline, int courseId, string description)
         {
