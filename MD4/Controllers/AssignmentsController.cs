@@ -22,6 +22,7 @@ namespace MD4.Controllers
         // GET: Assignments
         public async Task<IActionResult> Index()
         {
+
             return View(await _context.Assignments.ToListAsync());
         }
 
@@ -34,7 +35,10 @@ namespace MD4.Controllers
             }
 
             var assignment = await _context.Assignments
-                .FirstOrDefaultAsync(m => m.Id == id);
+                //.FirstOrDefaultAsync(m => m.Id == id)
+                .Include(a => a.Course)
+                .FirstOrDefaultAsync(a => a.Id == id);
+            //assignment += _context.Courses.FirstOrDefault(c => c.Id == assignment.CourseId);
             if (assignment == null)
             {
                 return NotFound();
@@ -46,6 +50,11 @@ namespace MD4.Controllers
         // GET: Assignments/Create
         public IActionResult Create()
         {
+            ViewBag.CourseId = _context.Courses.Select(c => new SelectListItem
+            {
+                Text = c.Name,
+                Value = c.Id.ToString()
+            }).ToList();
             return View();
         }
 
@@ -60,6 +69,11 @@ namespace MD4.Controllers
             {
                 _context.Add(assignment);
                 await _context.SaveChangesAsync();
+                ViewBag.CourseId = _context.Courses.Select(c => new SelectListItem
+                {
+                    Text = c.Name,
+                    Value = c.Id.ToString()
+                }).ToList();
                 return RedirectToAction(nameof(Index));
             }
             return View(assignment);
@@ -72,6 +86,12 @@ namespace MD4.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.CourseId = _context.Courses.Select(c => new SelectListItem
+            {
+                Text = c.Name,
+                Value = c.Id.ToString()
+            }).ToList();
 
             var assignment = await _context.Assignments.FindAsync(id);
             if (assignment == null)
@@ -125,7 +145,8 @@ namespace MD4.Controllers
             }
 
             var assignment = await _context.Assignments
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .Include(a => a.Course)
+                .FirstOrDefaultAsync(a => a.Id == id);
             if (assignment == null)
             {
                 return NotFound();

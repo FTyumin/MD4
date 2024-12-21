@@ -23,7 +23,6 @@ namespace MD4.Models
             Surname = surname;
             Gender = gender;
             StudentIdNumber = studentIdNumber;
-            //Submissions = new List<Submission>();
         }
 
         public Student() { }

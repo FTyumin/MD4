@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MD4.Models.Assignment>
+﻿@model IEnumerable<MD4.Models.Submission>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,13 +13,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Deadline)
+                @Html.DisplayNameFor(model => model.SubmissionTime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.Score)
             </th>
             <th>
-                @* @Html.DisplayNameFor(model => model.Course.Name) *@
+                @Html.DisplayNameFor(model => model.Student)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Assignment)
             </th>
             <th></th>
         </tr>
@@ -28,10 +31,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Deadline)
+                @Html.DisplayFor(modelItem => item.SubmissionTime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                @Html.DisplayFor(modelItem => item.Score)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assignment.Id)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

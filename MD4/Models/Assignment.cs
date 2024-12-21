@@ -9,7 +9,7 @@ namespace MD4.Models
         public DateTime Deadline { get; set; }
         public int CourseId { get; set; }
         public string Description { get; set; }
-        Course Course { get; set; }
+        public Course? Course { get; set; }
 
         public ICollection<Submission>? Submissions { get; set; }
 
@@ -20,6 +20,6 @@ namespace MD4.Models
             CourseId = courseId;
             Description = description;
         }
-        //public Assignment() { }
+        public Assignment() { }
     }
 }

@@ -22,6 +22,6 @@ namespace MD4.Models
             Score = score;
         }
 
-        //public Submission() { }
+        public Submission() { }
     }
 }
