@@ -1,7 +1,10 @@
-﻿namespace MD4.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MD4.Models
 {
     public class Assignment
     {
+        [Key]
         public int Id { get; set; }
         public DateTime Deadline { get; set; }
         public int CourseId { get; set; }
@@ -17,6 +20,6 @@
             CourseId = courseId;
             Description = description;
         }
-        public Assignment() { }
+        //public Assignment() { }
     }
 }

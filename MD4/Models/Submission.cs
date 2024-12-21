@@ -1,7 +1,10 @@
-﻿namespace MD4.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MD4.Models
 {
     public class Submission
     {
+        [Key]
         public int Id { get; set; }
         public int AssignmentId { get; set; }
         public int StudentId { get; set; }
@@ -19,6 +22,6 @@
             Score = score;
         }
 
-        public Submission() { }
+        //public Submission() { }
     }
 }

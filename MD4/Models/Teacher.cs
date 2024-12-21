@@ -1,7 +1,10 @@
-﻿namespace MD4.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MD4.Models
 {
     public class Teacher
     {
+        [Key]
         public int ID { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
