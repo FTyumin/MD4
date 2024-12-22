@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MD4.Data;
 using MD4.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MD4.Controllers
 {
+    // Tikai registretie lietotaji var rediget iesniegumus
+    [Authorize]
     public class SubmissionsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -38,6 +41,9 @@ namespace MD4.Controllers
                 .Include(s => s.Assignment)
                 .Include(s => s.Student)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
+
+
             if (submission == null)
             {
                 return NotFound();
@@ -51,6 +57,18 @@ namespace MD4.Controllers
         {
             ViewData["AssignmentId"] = new SelectList(_context.Assignments, "Id", "Id");
             ViewData["StudentId"] = new SelectList(_context.Students, "Id", "Id");
+            ViewBag.AssignmentId = _context.Assignments.Select(a => new SelectListItem
+            {
+                Text = a.Description,
+                Value = a.Id.ToString()
+            }).ToList();
+
+            ViewBag.StudentId = _context.Students.Select(s => new SelectListItem
+            {
+                Text = s.Name + " " + s.Surname,
+                Value = s.Id.ToString()
+            }).ToList();
+
             return View();
         }
 

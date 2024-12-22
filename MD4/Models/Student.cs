@@ -9,6 +9,7 @@ namespace MD4.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
+        public string? FullName => Name + " " + Surname;
         public string Gender { get; set; }
         public int StudentIdNumber { get; set; }
 

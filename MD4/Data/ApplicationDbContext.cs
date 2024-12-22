@@ -11,6 +11,8 @@ namespace MD4.Data
         {
         }
 
+        // Tika izvelets dotais datubazes variants 
+
         public DbSet<MD4.Models.Teacher> Teachers { get; set; }
         public DbSet<MD4.Models.Course> Courses { get; set; }
         public DbSet<MD4.Models.Assignment> Assignments { get; set; }
