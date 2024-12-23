@@ -29,6 +29,22 @@
             
             @Html.DisplayFor(model => model.Course.Name)
         </dd>
+        <dt>
+                        @Html.DisplayNameFor(model => model.Submissions)
+        </dt>
+        <dd>
+            <ul>
+                @foreach (var submission in Model.Submissions)
+                {
+                    <li>
+                       Student: @Html.DisplayFor(modelItem => submission.Student.FullName) |
+                       Score: @Html.DisplayFor(ModelItem => submission.Score)  |
+                        <a href="/Submissions/Edit/@submission.Id">Edit</a> |
+                        <a href="/Submissions/Details/@submission.Id">Details</a> |
+                        <a href="/Submissions/Delete/@submission.Id">Delete</a>
+                    </li>
+                }
+        </dd>
     </dl>
 </div>
 <div>

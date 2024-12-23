@@ -37,6 +37,8 @@ namespace MD4.Controllers
             var assignment = await _context.Assignments
                 //.FirstOrDefaultAsync(m => m.Id == id)
                 .Include(a => a.Course)
+                .Include(a => a.Submissions)
+                    .ThenInclude(s => s.Student)
                 .FirstOrDefaultAsync(a => a.Id == id);
             //assignment += _context.Courses.FirstOrDefault(c => c.Id == assignment.CourseId);
             if (assignment == null)

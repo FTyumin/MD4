@@ -44,6 +44,7 @@ namespace MD4.Controllers
 
             var course = await _context.Courses
                 .Include(c => c.Teacher)
+                .Include(c=>c.Assignments)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (course == null)
             {
@@ -98,7 +99,13 @@ namespace MD4.Controllers
             {
                 return NotFound();
             }
-            ViewData["TeacherId"] = new SelectList(_context.Teachers, "ID", "ID", course.TeacherId);
+            //ViewData["TeacherId"] = new SelectList(_context.Teachers, "ID", "ID", course.TeacherId);
+            ViewBag.TeacherId = _context.Teachers
+                .Select(t => new SelectListItem
+                {
+                    Value = t.ID.ToString(),
+                    Text = t.Name + " " + t.Surname
+                });
             return View(course);
         }
 

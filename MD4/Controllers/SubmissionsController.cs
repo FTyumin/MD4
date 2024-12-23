@@ -85,8 +85,19 @@ namespace MD4.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AssignmentId"] = new SelectList(_context.Assignments, "Id", "Id", submission.AssignmentId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "Id", "Id", submission.StudentId);
+            //ViewData["AssignmentId"] = new SelectList(_context.Assignments, "Id", "Id", submission.AssignmentId);
+            //ViewData["StudentId"] = new SelectList(_context.Students, "Id", "Id", submission.StudentId);
+            ViewBag.AssignmentId = _context.Assignments.Select(a => new SelectListItem
+            {
+                Text = a.Description,
+                Value = a.Id.ToString()
+            }).ToList();
+
+            ViewBag.StudentId = _context.Students.Select(s => new SelectListItem
+            {
+                Text = s.Name + " " + s.Surname,
+                Value = s.Id.ToString()
+            }).ToList();
             return View(submission);
         }
 
@@ -103,8 +114,19 @@ namespace MD4.Controllers
             {
                 return NotFound();
             }
-            ViewData["AssignmentId"] = new SelectList(_context.Assignments, "Id", "Id", submission.AssignmentId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "Id", "Id", submission.StudentId);
+            //ViewData["AssignmentId"] = new SelectList(_context.Assignments, "Id", "Id", submission.AssignmentId);
+            //ViewData["StudentId"] = new SelectList(_context.Students, "Id", "Id", submission.StudentId);
+            ViewBag.AssignmentId = _context.Assignments.Select(a => new SelectListItem
+            {
+                Text = a.Description,
+                Value = a.Id.ToString()
+            }).ToList();
+
+            ViewBag.StudentId = _context.Students.Select(s => new SelectListItem
+            {
+                Text = s.Name + " " + s.Surname,
+                Value = s.Id.ToString()
+            }).ToList();
             return View(submission);
         }
 
@@ -138,10 +160,21 @@ namespace MD4.Controllers
                         throw;
                     }
                 }
+                ViewBag.AssignmentId = _context.Assignments.Select(a => new SelectListItem
+                {
+                    Text = a.Description,
+                    Value = a.Id.ToString()
+                }).ToList();
+
+                ViewBag.StudentId = _context.Students.Select(s => new SelectListItem
+                {
+                    Text = s.Name + " " + s.Surname,
+                    Value = s.Id.ToString()
+                }).ToList();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AssignmentId"] = new SelectList(_context.Assignments, "Id", "Id", submission.AssignmentId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "Id", "Id", submission.StudentId);
+            //ViewData["AssignmentId"] = new SelectList(_context.Assignments, "Id", "Id", submission.AssignmentId);
+            //ViewData["StudentId"] = new SelectList(_context.Students, "Id", "Id", submission.StudentId);
             return View(submission);
         }
 

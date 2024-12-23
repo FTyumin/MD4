@@ -19,8 +19,6 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    bool canConnect = context.Database.CanConnect();
-    Console.WriteLine(canConnect ? "Connected to database successfully." : "Failed to connect to the database.");
 }
 
 // Configure the HTTP request pipeline.
